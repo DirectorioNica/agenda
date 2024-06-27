@@ -42,25 +42,24 @@ function renderBuses(buses) {
     return;
   }
 
-  const listHeader = document.createElement('ons-list-header');
+  const listHeader = document.createElement('li');
   listHeader.textContent = 'Buses';
+  listHeader.classList.add('w3-large');
   directoryList.appendChild(listHeader);
 
   buses.forEach(bus => {
-    const listItem = document.createElement('ons-list-item');
+    const listItem = document.createElement('li');
     const busInfo = `
-      <div class="center">
-        <span class="list-item__title">${bus.get('nombre')}</span>
-        <span class="list-item__subtitle">${bus.get('origen')} - ${bus.get('destino')}</span>
-      </div>
-      <div class="right">
-        <span class="list-item__label">Salida: ${bus.get('salida')}</span>
-        <span class="list-item__label">Llegada: ${bus.get('llegada')}</span>
-        <a href="tel:${bus.get('telefono')}"><span class="list-item__label">Tel: ${bus.get('telefono')}</span></a>
+      <div>
+        <strong>${bus.get('nombre')}</strong><br>
+        ${bus.get('origen')} - ${bus.get('destino')}<br>
+        Salida: ${bus.get('salida')}<br>
+        Llegada: ${bus.get('llegada')}<br>
+        <a href="tel:${bus.get('telefono')}">Tel: ${bus.get('telefono')}</a>
       </div>
     `;
     listItem.innerHTML = busInfo;
-    listItem.setAttribute('tappable', true);
+    listItem.classList.add('w3-padding');
     directoryList.appendChild(listItem);
   });
 }
