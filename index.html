@@ -24,17 +24,17 @@
 
     <ons-card>
       <div style="padding: 10px;">
-        <ons-select class="w3-select" id="select-origen" modifier="underbar" placeholder="Selecciona origen">
+        <select id="select-origen" class="w3-select">
           <!-- Opciones se añadirán dinámicamente -->
-        </ons-select>
-        <ons-select class="w3-select" id="select-destino" modifier="underbar" placeholder="Selecciona destino">
+        </select>
+        <select id="select-destino" class="w3-select">
           <!-- Opciones se añadirán dinámicamente -->
-        </ons-select>
-        <ons-button onclick="searchBuses()">Buscar</ons-button>
+        </select>
+        <button onclick="searchBuses()">Buscar</button>
       </div>
     </ons-card>
 
-    <ons-list id="directoryList"></ons-list>
+    <ul id="directoryList"></ul>
   </ons-page>
 </body>
 </html>
