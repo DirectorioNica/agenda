@@ -11,13 +11,36 @@ async function getBuses() {
   }
 }
 
-function renderBuses(buses) {
-  const list = document.querySelector('#directoryList');
-  list.innerHTML = ''; // Clear the list before rendering
+function populateSelects(buses) {
+  const origins = new Set();
+  const destinations = new Set();
 
-  const listHeader = document.createElement('ons-list-header');
-  listHeader.textContent = 'Buses';
-  list.appendChild(listHeader);
+  buses.forEach(bus => {
+    origins.add(bus.get('origen'));
+    destinations.add(bus.get('destino'));
+  });
+
+  const originSelect = document.getElementById('select-origen');
+  const destinationSelect = document.getElementById('select-destino');
+
+  origins.forEach(origen => {
+    const option = document.createElement('option');
+    option.value = origen;
+    option.textContent = origen;
+    originSelect.appendChild(option);
+  });
+
+  destinations.forEach(destino => {
+    const option = document.createElement('option');
+    option.value = destino;
+    option.textContent = destino;
+    destinationSelect.appendChild(option);
+  });
+}
+
+function renderBuses(buses, listId) {
+  const list = document.getElementById(listId);
+  list.innerHTML = ''; // Clear the list before rendering
 
   buses.forEach(bus => {
     const listItem = document.createElement('ons-list-item');
@@ -40,16 +63,34 @@ function renderBuses(buses) {
 
 document.addEventListener('DOMContentLoaded', async function() {
   window.buses = await getBuses();
-  renderBuses(window.buses);
+  renderBuses(window.buses, 'directoryList');
+  populateSelects(window.buses);
 });
 
-function filterBuses() {
-  const query = document.getElementById('searchInput').value.toLowerCase();
+function searchBuses() {
+  const origin = document.getElementById('select-origen').value;
+  const destination = document.getElementById('select-destino').value;
+
   const filteredBuses = window.buses.filter(bus => {
-    const nombre = bus.get('nombre').toLowerCase();
-    const origen = bus.get('origen').toLowerCase();
-    const destino = bus.get('destino').toLowerCase();
-    return nombre.includes(query) || origen.includes(query) || destino.includes(query);
+    const busOrigin = bus.get('origen');
+    const busDestination = bus.get('destino');
+    return busOrigin === origin && busDestination === destination;
   });
-  renderBuses(filteredBuses);
+
+  renderBuses(filteredBuses, 'resultsList');
+  showDialog();
+}
+
+function showDialog() {
+  const dialog = document.getElementById('results-dialog');
+  if (dialog) {
+    dialog.show();
+  }
+}
+
+function hideDialog() {
+  const dialog = document.getElementById('results-dialog');
+  if (dialog) {
+    dialog.hide();
+  }
 }
