@@ -31,7 +31,7 @@ function renderBuses(buses) {
       <div class="right">
         <span class="list-item__label">Salida: ${bus.get('salida')}</span>
         <span class="list-item__label">Llegada: ${bus.get('llegada')}</span>
-        <span class="list-item__label">Tel: ${bus.get('telefono')}</span>
+        <a href="tel:${bus.get('telefono')}"><span class="list-item__label">Tel: ${bus.get('telefono')}</span></a>
       </div>
     `;
     listItem.innerHTML = busInfo;
