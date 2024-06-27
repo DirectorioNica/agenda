@@ -1,7 +1,7 @@
 // buses.js
 async function getBuses() {
-  const Bus = Parse.Object.extend('Buses');
-  const query = new Parse.Query(Bus);
+  const B4aVehicle = Parse.Object.extend('B4aVehicle');
+  const query = new Parse.Query(B4aVehicle);
   return await query.find();
 }
 
