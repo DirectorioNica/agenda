@@ -3,32 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Directorio Telefónico</title>
+  <title>Directorio Telefónico - Buses</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/onsenui/css/onsen-css-components.min.css">
   <script src="https://cdn.jsdelivr.net/npm/onsenui/js/onsenui.min.js"></script>
+  <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+  <script src="buses.js"></script>
+  <script>
+    // Configurar Back4App
+    Parse.initialize("YOUR_APP_ID", "YOUR_JAVASCRIPT_KEY");
+    Parse.serverURL = "https://parseapi.back4app.com/";
+  </script>
 </head>
 <body>
   <ons-page>
     <ons-toolbar>
-      <div class="center">Directorio Telefónico</div>
+      <div class="center">Directorio Telefónico - Buses</div>
     </ons-toolbar>
-    <ons-list>
-      <ons-list-header>Buses</ons-list-header>
-      <ons-list-item tappable>Empresa de Buses A</ons-list-item>
-      <ons-list-item tappable>Empresa de Buses B</ons-list-item>
-      <ons-list-item tappable>Empresa de Buses C</ons-list-item>
-
-      <ons-list-header>Hoteles</ons-list-header>
-      <ons-list-item tappable>Hotel A</ons-list-item>
-      <ons-list-item tappable>Hotel B</ons-list-item>
-      <ons-list-item tappable>Hotel C</ons-list-item>
-
-      <ons-list-header>Farmacias</ons-list-header>
-      <ons-list-item tappable>Farmacia A</ons-list-item>
-      <ons-list-item tappable>Farmacia B</ons-list-item>
-      <ons-list-item tappable>Farmacia C</ons-list-item>
-    </ons-list>
+    <ons-list id="directoryList"></ons-list>
   </ons-page>
 </body>
 </html>
