@@ -4,7 +4,7 @@ document.addEventListener('init', function(event) {
   // Lógica para la página 'page1.html'
   if (page.id === 'page1') {
     page.querySelector('#push-button').onclick = function() {
-      document.querySelector('#myNavigator').pushPage('page2.html');
+      document.querySelector('#myNavigator').pushPage('info.html');
     };
 
     // ... más código para la página 'page1.html'
