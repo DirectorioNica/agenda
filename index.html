@@ -18,9 +18,12 @@
 </head>
 <body>
   <ons-page>
-    <ons-toolbar>
-      <div class="center">Directorio Telefónico - Buses</div>
-    </ons-toolbar>
+    <ons-search-input 
+      placeholder="Buscar..." 
+      id="searchInput" 
+      oninput="filterBuses()"
+      style="width: 90%; margin: 10px auto; display: block;">
+    </ons-search-input>
     <ons-list id="directoryList"></ons-list>
   </ons-page>
 </body>
