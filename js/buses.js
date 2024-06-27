@@ -11,36 +11,40 @@ async function getBuses() {
   }
 }
 
-function populateSelects(buses) {
-  const origins = new Set();
-  const destinations = new Set();
+async function searchBuses() {
+  try {
+    const origen = document.getElementById('select-origen').value;
+    const destino = document.getElementById('select-destino').value;
+    const B4aVehicle = Parse.Object.extend('B4aVehicle');
+    const query = new Parse.Query(B4aVehicle);
 
-  buses.forEach(bus => {
-    origins.add(bus.get('origen'));
-    destinations.add(bus.get('destino'));
-  });
+    if (origen) {
+      query.equalTo('origen', origen);
+    }
+    if (destino) {
+      query.equalTo('destino', destino);
+    }
 
-  const originSelect = document.getElementById('select-origen');
-  const destinationSelect = document.getElementById('select-destino');
-
-  origins.forEach(origen => {
-    const option = document.createElement('option');
-    option.value = origen;
-    option.textContent = origen;
-    originSelect.appendChild(option);
-  });
-
-  destinations.forEach(destino => {
-    const option = document.createElement('option');
-    option.value = destino;
-    option.textContent = destino;
-    destinationSelect.appendChild(option);
-  });
+    const results = await query.find();
+    console.log('Resultados de búsqueda:', results); // Log para verificar los resultados de búsqueda
+    renderBuses(results);
+  } catch (error) {
+    console.error('Error en la búsqueda de buses:', error);
+  }
 }
 
-function renderBuses(buses, listId) {
-  const list = document.getElementById(listId);
-  list.innerHTML = ''; // Clear the list before rendering
+function renderBuses(buses) {
+  const directoryList = document.getElementById('directoryList');
+  directoryList.innerHTML = ''; // Limpiar la lista antes de renderizar nuevos resultados
+
+  if (!buses || buses.length === 0) {
+    console.log('No se encontraron buses para renderizar.');
+    return;
+  }
+
+  const listHeader = document.createElement('ons-list-header');
+  listHeader.textContent = 'Buses';
+  directoryList.appendChild(listHeader);
 
   buses.forEach(bus => {
     const listItem = document.createElement('ons-list-item');
@@ -57,40 +61,42 @@ function renderBuses(buses, listId) {
     `;
     listItem.innerHTML = busInfo;
     listItem.setAttribute('tappable', true);
-    list.appendChild(listItem);
+    directoryList.appendChild(listItem);
   });
+}
+
+async function populateSelectOptions() {
+  try {
+    const buses = await getBuses();
+    const origins = new Set();
+    const destinations = new Set();
+
+    buses.forEach(bus => {
+      origins.add(bus.get('origen'));
+      destinations.add(bus.get('destino'));
+    });
+
+    const selectOrigen = document.getElementById('select-origen');
+    const selectDestino = document.getElementById('select-destino');
+
+    origins.forEach(origen => {
+      const option = document.createElement('option');
+      option.value = origen;
+      option.textContent = origen;
+      selectOrigen.appendChild(option);
+    });
+
+    destinations.forEach(destino => {
+      const option = document.createElement('option');
+      option.value = destino;
+      option.textContent = destino;
+      selectDestino.appendChild(option);
+    });
+  } catch (error) {
+    console.error('Error al llenar las opciones de selección:', error);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
-  window.buses = await getBuses();
-  renderBuses(window.buses, 'directoryList');
-  populateSelects(window.buses);
+  await populateSelectOptions();
 });
-
-function searchBuses() {
-  const origin = document.getElementById('select-origen').value;
-  const destination = document.getElementById('select-destino').value;
-
-  const filteredBuses = window.buses.filter(bus => {
-    const busOrigin = bus.get('origen');
-    const busDestination = bus.get('destino');
-    return busOrigin === origin && busDestination === destination;
-  });
-
-  renderBuses(filteredBuses, 'resultsList');
-  showDialog();
-}
-
-function showDialog() {
-  const dialog = document.getElementById('results-dialog');
-  if (dialog) {
-    dialog.show();
-  }
-}
-
-function hideDialog() {
-  const dialog = document.getElementById('results-dialog');
-  if (dialog) {
-    dialog.hide();
-  }
-}
