@@ -4,36 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Directorio Telefónico - Buses</title>
-   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/onsenui/css/onsen-css-components.min.css">
   <script src="https://cdn.jsdelivr.net/npm/onsenui/js/onsenui.min.js"></script>
   <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
-  <script src="js/buses.js"></script>
   <script>
     // Configurar Back4App
     Parse.initialize("qWRUPwIAHwxC6SlBujz7VNVk1GgHAzUr5pIVq9bw", "CzjbhomeSRolrQmalCYF7KsSCugHCyQrsr4jRVnf");
     Parse.serverURL = "https://parseapi.back4app.com/";
   </script>
+  <script src="js/buses.js"></script>
 </head>
 <body>
   <ons-page>
+    <ons-toolbar>
+      <div class="center">Directorio Telefónico - Buses</div>
+    </ons-toolbar>
 
-    <ons-card> 
-   <div  style="padding: 10px;">
-      <ons-select class="w3-select" id="select-origen" modifier="underbar" placeholder="Selecciona origen">
-        <!-- Opciones se añadirán dinámicamente -->
-      </ons-select>
-      <ons-select class="w3-select" id="select-destino" modifier="underbar" placeholder="Selecciona destino">
-        <!-- Opciones se añadirán dinámicamente -->
-      </ons-select>
-      <ons-button onclick="searchBuses()">Buscar</ons-button>
-    </div>
- </ons-card>
+    <ons-card>
+      <div style="padding: 10px;">
+        <ons-select class="w3-select" id="select-origen" modifier="underbar" placeholder="Selecciona origen">
+          <!-- Opciones se añadirán dinámicamente -->
+        </ons-select>
+        <ons-select class="w3-select" id="select-destino" modifier="underbar" placeholder="Selecciona destino">
+          <!-- Opciones se añadirán dinámicamente -->
+        </ons-select>
+        <ons-button onclick="searchBuses()">Buscar</ons-button>
+      </div>
+    </ons-card>
 
-
-
-    
     <ons-list id="directoryList"></ons-list>
   </ons-page>
 </body>
