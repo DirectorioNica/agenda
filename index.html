@@ -1,70 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
-  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
-  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
-  <script src="js/pages.js"></script>
-  <style>
-    .card {
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      transition: 0.3s;
-      padding: 16px;
-      margin-bottom: 16px;
-    }
-    .card:hover {
-      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Directorio Telefónico</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/onsenui/css/onsen-css-components.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/onsenui/js/onsenui.min.js"></script>
 </head>
 <body>
-  <ons-navigator id="myNavigator">
-    <ons-page id="page1">
-      <ons-toolbar>
-        <div class="center">Directorio Telefónico</div>
-      </ons-toolbar>
-      <div class="content">
-        <ons-search-input id="searchInput" placeholder="Buscar contacto"></ons-search-input>
-        <div id="contactList">
-          </div>
-      </div>
-    </ons-page>
-  </ons-navigator>
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">Directorio Telefónico</div>
+    </ons-toolbar>
+    <ons-list>
+      <ons-list-header>Buses</ons-list-header>
+      <ons-list-item tappable>Empresa de Buses A</ons-list-item>
+      <ons-list-item tappable>Empresa de Buses B</ons-list-item>
+      <ons-list-item tappable>Empresa de Buses C</ons-list-item>
 
-  <script>
-    // Ejemplo de datos de contactos (puedes cargarlos desde un archivo JSON o una API)
-    const contacts = [
-      { name: "Juan Pérez", phone: "123-456-7890" },
-      { name: "María Gómez", phone: "987-654-3210" },
-      // ... más contactos
-    ];
+      <ons-list-header>Hoteles</ons-list-header>
+      <ons-list-item tappable>Hotel A</ons-list-item>
+      <ons-list-item tappable>Hotel B</ons-list-item>
+      <ons-list-item tappable>Hotel C</ons-list-item>
 
-    const contactList = document.getElementById('contactList');
-    const searchInput = document.getElementById('searchInput');
-
-    function displayContacts(contactsToDisplay) {
-      contactList.innerHTML = ''; // Limpiar la lista antes de mostrar
-      contactsToDisplay.forEach(contact => {
-        const card = document.createElement('ons-card');
-        card.classList.add('card');
-        card.innerHTML = `
-          <h2>${contact.name}</h2>
-          <p>${contact.phone}</p>
-        `;
-        contactList.appendChild(card);
-      });
-    }
-
-    // Mostrar todos los contactos al cargar la página
-    displayContacts(contacts);
-
-    searchInput.addEventListener('input', () => {
-      const searchTerm = searchInput.value.toLowerCase();
-      const filteredContacts = contacts.filter(contact => {
-        return contact.name.toLowerCase().includes(searchTerm);
-      });
-      displayContacts(filteredContacts);
-    });
-  </script>
+      <ons-list-header>Farmacias</ons-list-header>
+      <ons-list-item tappable>Farmacia A</ons-list-item>
+      <ons-list-item tappable>Farmacia B</ons-list-item>
+      <ons-list-item tappable>Farmacia C</ons-list-item>
+    </ons-list>
+  </ons-page>
 </body>
 </html>
