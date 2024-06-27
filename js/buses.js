@@ -1,14 +1,7 @@
-// buses.js
-async function getBuses() {
-  const B4aVehicle = Parse.Object.extend('B4aVehicle');
-  const query = new Parse.Query(B4aVehicle);
-  return await query.find();
-}
-
 function renderBuses(buses) {
   const listHeader = document.createElement('ons-list-header');
   listHeader.textContent = 'Buses';
-  document.querySelector('ons-list').appendChild(listHeader);
+  document.querySelector('#directoryList').appendChild(listHeader);
 
   buses.forEach(bus => {
     const listItem = document.createElement('ons-list-item');
@@ -25,7 +18,7 @@ function renderBuses(buses) {
     `;
     listItem.innerHTML = busInfo;
     listItem.setAttribute('tappable', true);
-    document.querySelector('ons-list').appendChild(listItem);
+    document.querySelector('#directoryList').appendChild(listItem);
   });
 }
 
