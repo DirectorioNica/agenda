@@ -4,19 +4,20 @@
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script src="js/pages.js"></script> 
 </head>
 <body>
   <ons-navigator id="myNavigator">
-    <ons-page>
+    <ons-page id="page1">
       <ons-toolbar>
-        <div class="center">Título de la página</div>
+        <div class="center">Página Principal</div>
       </ons-toolbar>
-      <ons-list>
-        <ons-list-item>Elemento 1</ons-list-item>
-        <ons-list-item>Elemento 2</ons-list-item>
-      </ons-list>
+      <div style="text-align: center; margin-top: 20px;">
+        <ons-button id="push-button">Ir a la página 2</ons-button>
+      </div>
     </ons-page>
   </ons-navigator>
 </body>
 </html>
+
 
