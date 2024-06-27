@@ -14,7 +14,30 @@
     Parse.initialize("qWRUPwIAHwxC6SlBujz7VNVk1GgHAzUr5pIVq9bw", "CzjbhomeSRolrQmalCYF7KsSCugHCyQrsr4jRVnf");
     Parse.serverURL = "https://parseapi.back4app.com/";
   </script>
-  <script src="js/buses.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    select, button {
+      width: 100%;
+      max-width: 300px;
+    }
+    @media (min-width: 600px) {
+      .form-container {
+        flex-direction: row;
+        justify-content: space-around;
+      }
+    }
+    ons-card {
+      margin: 10px;
+    }
+  </style>
 </head>
 <body>
   <ons-page>
@@ -23,7 +46,7 @@
     </ons-toolbar>
 
     <ons-card>
-      <div style="padding: 10px;">
+      <div class="form-container">
         <select id="select-origen" class="w3-select">
           <!-- Opciones se añadirán dinámicamente -->
         </select>
