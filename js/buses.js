@@ -12,14 +12,12 @@ async function getBuses() {
 }
 
 function renderBuses(buses) {
-  if (!buses || buses.length === 0) {
-    console.log('No se encontraron buses para renderizar.');
-    return;
-  }
+  const list = document.querySelector('#directoryList');
+  list.innerHTML = ''; // Clear the list before rendering
 
   const listHeader = document.createElement('ons-list-header');
   listHeader.textContent = 'Buses';
-  document.querySelector('#directoryList').appendChild(listHeader);
+  list.appendChild(listHeader);
 
   buses.forEach(bus => {
     const listItem = document.createElement('ons-list-item');
@@ -36,11 +34,22 @@ function renderBuses(buses) {
     `;
     listItem.innerHTML = busInfo;
     listItem.setAttribute('tappable', true);
-    document.querySelector('#directoryList').appendChild(listItem);
+    list.appendChild(listItem);
   });
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
-  const buses = await getBuses();
-  renderBuses(buses);
+  window.buses = await getBuses();
+  renderBuses(window.buses);
 });
+
+function filterBuses() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const filteredBuses = window.buses.filter(bus => {
+    const nombre = bus.get('nombre').toLowerCase();
+    const origen = bus.get('origen').toLowerCase();
+    const destino = bus.get('destino').toLowerCase();
+    return nombre.includes(query) || origen.includes(query) || destino.includes(query);
+  });
+  renderBuses(filteredBuses);
+}
