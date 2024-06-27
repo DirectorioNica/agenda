@@ -1,4 +1,22 @@
+// buses.js
+async function getBuses() {
+  try {
+    const B4aVehicle = Parse.Object.extend('B4aVehicle');
+    const query = new Parse.Query(B4aVehicle);
+    const results = await query.find();
+    console.log('Buses encontrados:', results); // Log para verificar que se obtienen los datos
+    return results;
+  } catch (error) {
+    console.error('Error obteniendo buses:', error);
+  }
+}
+
 function renderBuses(buses) {
+  if (!buses || buses.length === 0) {
+    console.log('No se encontraron buses para renderizar.');
+    return;
+  }
+
   const listHeader = document.createElement('ons-list-header');
   listHeader.textContent = 'Buses';
   document.querySelector('#directoryList').appendChild(listHeader);
