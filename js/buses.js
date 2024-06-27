@@ -79,6 +79,17 @@ async function populateSelectOptions() {
     const selectOrigen = document.getElementById('select-origen');
     const selectDestino = document.getElementById('select-destino');
 
+    // Agregar una opción vacía al principio de los selectores
+    const emptyOptionOrigen = document.createElement('option');
+    emptyOptionOrigen.value = '';
+    emptyOptionOrigen.textContent = 'Todos los orígenes';
+    selectOrigen.appendChild(emptyOptionOrigen);
+
+    const emptyOptionDestino = document.createElement('option');
+    emptyOptionDestino.value = '';
+    emptyOptionDestino.textContent = 'Todos los destinos';
+    selectDestino.appendChild(emptyOptionDestino);
+
     origins.forEach(origen => {
       const option = document.createElement('option');
       option.value = origen;
