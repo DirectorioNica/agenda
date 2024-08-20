@@ -1,5 +1,3 @@
-// domHandlers.js
-
 // Función para mostrar u ocultar formularios
 function toggleVisibility(id, show) {
     const element = document.getElementById(id);
@@ -101,6 +99,62 @@ function searchStudent() {
     }
 }
 
+// Función para generar la lista de clases con opción de eliminar estudiantes
+function generateClassList() {
+    let students = getLocalStorageItem('students') || [];
+    let classList = {};
+    
+    // Agrupar estudiantes por clase
+    students.forEach(student => {
+        if (!classList[student.studentClass]) {
+            classList[student.studentClass] = [];
+        }
+        classList[student.studentClass].push(student);
+    });
+    
+    let classHtml = '<ul>';
+    for (let className in classList) {
+        classHtml += `<li><strong>${className}</strong><ul>`;
+        classList[className].forEach(student => {
+            classHtml += `
+                <li>
+                    ${student.name}
+                    <button class="w3-button w3-red w3-small" onclick="deleteStudent('${student.id}')">Borrar</button>
+                </li>`;
+        });
+        classHtml += '</ul></li>';
+    }
+    classHtml += '</ul>';
+    return classHtml;
+}
+
+// Función para eliminar estudiante
+window.deleteStudent = function(studentId) {
+    let students = getLocalStorageItem('students') || [];
+    students = students.filter(student => student.id !== studentId);
+    setLocalStorageItem('students', students);
+
+    // Actualizar la lista de clases
+    document.getElementById('class-list').innerHTML = generateClassList();
+};
+
+
+
+
+
+
+
+
+// Función para eliminar estudiante
+function deleteStudent(studentId) {
+    let students = getLocalStorageItem('students') || [];
+    students = students.filter(student => student.id !== studentId);
+    setLocalStorageItem('students', students);
+
+    // Actualizar la lista de clases
+    document.getElementById('class-list').innerHTML = generateClassList();
+}
+
 // Exportar funciones globalmente
 window.showAddDateForm = showAddDateForm;
 window.showAddStudentForm = showAddStudentForm;
@@ -110,3 +164,5 @@ window.showClassManagement = showClassManagement;
 window.prepareAttendanceForm = prepareAttendanceForm;
 window.addStudent = addStudent;
 window.searchStudent = searchStudent;
+window.generateClassList = generateClassList;
+window.deleteStudent = deleteStudent;
