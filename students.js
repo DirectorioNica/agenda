@@ -7,7 +7,7 @@ window.addStudent = function() {
         addStudentToLocalStorage(name, studentClass);
         alert('Estudiante agregado exitosamente.');
         document.getElementById('student-name-input').value = '';
-        document.getElementById('student-class-input').value = '';
+       // document.getElementById('student-class-input').value = '';
     } else {
         alert('Por favor, complete todos los campos.');
     }
