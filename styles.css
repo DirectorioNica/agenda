@@ -1,0 +1,56 @@
+/* styles.css */
+
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal */
+.w3-container {
+    padding: 20px;
+}
+
+/* Menú de navegación */
+.w3-bar {
+    margin-bottom: 20px;
+}
+
+/* Formularios */
+.w3-hide {
+    display: none;
+}
+
+/* Estilos para los formularios */
+.w3-container label {
+    display: block;
+    margin-top: 10px;
+}
+
+.w3-container input[type="text"],
+.w3-container input[type="date"],
+.w3-container select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.w3-container button {
+    margin-top: 10px;
+}
+
+/* Estilo para checkboxes */
+#student-checklist label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#student-checklist input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Estilo para el reporte y búsqueda de estudiantes */
+#report-content, #student-list {
+    margin-top: 20px;
+}
