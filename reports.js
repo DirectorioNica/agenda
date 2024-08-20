@@ -1,58 +1,52 @@
-// reports.js
+// Función para generar el reporte de asistencia
 function generateAttendanceReport() {
-    let dates = getLocalStorageItem('dates');
-    let reportHtml = '<ul>';
-    dates.forEach(date => {
-        reportHtml += `<li>${date}: ${getAttendanceForDate(date)}</li>`;
-    });
-    reportHtml += '</ul>';
+    let allAttendance = JSON.parse(localStorage.getItem('attendance')) || {};
+    let reportHtml = `
+        <button class="w3-button w3-blue" onclick="generateAndShowReport()">Generar Informe</button>
+        <table class="w3-table w3-bordered w3-striped w3-hoverable">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Clase</th>
+                    <th>Estudiantes Presentes</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    for (let date in allAttendance) {
+        for (let studentClass in allAttendance[date]) {
+            const attendance = allAttendance[date][studentClass];
+            const presentCount = Object.values(attendance).filter(status => status === 'present').length;
+            reportHtml += `
+                <tr>
+                    <td>${date}</td>
+                    <td>${studentClass}</td>
+                    <td>${presentCount}</td>
+                </tr>
+            `;
+        }
+    }
+
+    reportHtml += `
+            </tbody>
+        </table>
+    `;
     return reportHtml;
 }
 
-function generateClassList() {
-    let students = getLocalStorageItem('students');
-    let classList = {};
-    students.forEach(student => {
-        if (!classList[student.studentClass]) {
-            classList[student.studentClass] = [];
-        }
-        classList[student.studentClass].push(student.name);
-    });
-    let classHtml = '<ul>';
-    for (let className in classList) {
-        classHtml += `<li><strong>${className}</strong><ul>`;
-        classList[className].forEach(studentName => {
-            classHtml += `<li>${studentName}</li>`;
-        });
-        classHtml += '</ul></li>';
-    }
-    classHtml += '</ul>';
-    return classHtml;
+// Función para mostrar el reporte en el HTML
+function showAttendanceReport() {
+    toggleVisibility('date-form', false);
+    toggleVisibility('attendance-form', false);
+    toggleVisibility('add-student-form', false);
+    toggleVisibility('attendance-report', true);
+    toggleVisibility('student-search', false);
+    toggleVisibility('class-management', false);
+
+    const reportContent = document.getElementById('report-content');
+    reportContent.innerHTML = generateAttendanceReport();
 }
 
-function getAttendanceForDate(date) {
-    let attendance = getLocalStorageItem('attendance');
-    return attendance[date] ? Object.values(attendance[date]).filter(status => status === 'present').length : 'No data';
-}
-
-function searchStudentByName(name) {
-    let students = getLocalStorageItem('students');
-    let resultHtml = '<ul>';
-    students.forEach(student => {
-        if (student.name.includes(name)) {
-            resultHtml += `<li>${student.name} - Clase: ${student.studentClass}</li>`;
-        }
-    });
-    resultHtml += '</ul>';
-    return resultHtml;
-}
-
-window.searchStudent = function() {
-    const name = document.getElementById('student-search-input').value;
-    if (name) {
-        const results = searchStudentByName(name);
-        document.getElementById('search-results').innerHTML = results;
-    } else {
-        alert('Por favor, ingrese un nombre para buscar.');
-    }
-};
+// Exportar las funciones globalmente
+window.showAttendanceReport = showAttendanceReport;

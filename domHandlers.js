@@ -1,3 +1,5 @@
+// domHandlers.js
+
 // Función para mostrar u ocultar formularios
 function toggleVisibility(id, show) {
     const element = document.getElementById(id);
@@ -99,9 +101,9 @@ function searchStudent() {
     }
 }
 
-// Función para generar la lista de clases con opción de eliminar estudiantes
+// Función para generar la lista de clases y estudiantes
 function generateClassList() {
-    let students = getLocalStorageItem('students') || [];
+    let students = getLocalStorageItem('students');
     let classList = {};
     
     // Agrupar estudiantes por clase
@@ -119,7 +121,7 @@ function generateClassList() {
             classHtml += `
                 <li>
                     ${student.name}
-                    <button class="w3-button w3-red w3-small" onclick="deleteStudent('${student.id}')">Borrar</button>
+                    <button class="w3-button w3-red w3-small delete-student-button" data-student-id="${student.name}">Borrar</button>
                 </li>`;
         });
         classHtml += '</ul></li>';
@@ -128,31 +130,14 @@ function generateClassList() {
     return classHtml;
 }
 
-// Función para eliminar estudiante
-window.deleteStudent = function(studentId) {
-    let students = getLocalStorageItem('students') || [];
-    students = students.filter(student => student.id !== studentId);
+// Función para eliminar un estudiante
+function deleteStudent(studentName) {
+    let students = getLocalStorageItem('students');
+    students = students.filter(student => student.name !== studentName);
     setLocalStorageItem('students', students);
 
     // Actualizar la lista de clases
-    document.getElementById('class-list').innerHTML = generateClassList();
-};
-
-
-
-
-
-
-
-
-// Función para eliminar estudiante
-function deleteStudent(studentId) {
-    let students = getLocalStorageItem('students') || [];
-    students = students.filter(student => student.id !== studentId);
-    setLocalStorageItem('students', students);
-
-    // Actualizar la lista de clases
-    document.getElementById('class-list').innerHTML = generateClassList();
+    showClassManagement(); // Llama a esta función para actualizar la vista después de eliminar
 }
 
 // Exportar funciones globalmente
