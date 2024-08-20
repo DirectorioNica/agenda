@@ -19,7 +19,7 @@
         <button class="w3-button w3-red" onclick="showClassManagement()">Gestionar Clases</button>
 
         <div id="date-form" class="w3-hide">
-	<div class="w3-card w3-pale-green w3-panel">
+	<div class="w3-card w3-light-green w3-panel">
             <h2>Agregar Fecha</h2>
             <input type="date" id="date-input" class="w3-input w3-margin-bottom">
             <button class="w3-button w3-blue" onclick="prepareAttendanceForm()">Agregar</button>
@@ -27,12 +27,14 @@
         </div>
 
         <div id="attendance-form" class="w3-hide">
+	    <div class="w3-card w3-light-green w3-panel">
             <h2>Registrar Asistencia</h2>
             <select id="class-select" class="w3-select w3-margin-bottom" onchange="showAttendanceForm()">
                 <option value="">Seleccionar Clase</option>
             </select>
             <div id="attendance-list"></div>
             <button class="w3-button w3-blue" onclick="saveAttendance()">Guardar Asistencia</button>
+	    </div>
         </div>
 
         <div id="add-student-form" class="w3-hide">
