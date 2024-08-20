@@ -11,19 +11,23 @@
     <header class="w3-bar w3-blue">
         <h3 class="w3-bar-item">Sistema de Asistencia</h1>
     </header>
-    <main class="w3-padding">
+    <main class="">
         <button class="w3-button w3-green" onclick="showAddDateForm()">Agregar Fecha</button>
         <button class="w3-button w3-blue" onclick="showAddStudentForm()">Agregar Estudiante</button>
         <button class="w3-button w3-blue" onclick="showAttendanceReport()">Generar Reporte</button>
         <button class="w3-button w3-orange" onclick="showStudentSearch()">Buscar Estudiante</button>
         <button class="w3-button w3-red" onclick="showClassManagement()">Gestionar Clases</button>
 
-        <div id="date-form" class="w3-hide">
+        
+	    <div id="date-form" class="w3-hide">
+	<div class="w3-card-4 w3-border w3-padding">
             <h2>Agregar Fecha</h2>
             <input type="date" id="date-input" class="w3-input w3-margin-bottom">
             <button class="w3-button w3-blue" onclick="prepareAttendanceForm()">Agregar</button>
-        </div>
 
+	</div>
+        </div>
+       
         <div id="attendance-form" class="w3-hide">
             <h2>Registrar Asistencia</h2>
             <select id="class-select" class="w3-select w3-margin-bottom" onchange="showAttendanceForm()">
