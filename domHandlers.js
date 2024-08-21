@@ -114,7 +114,7 @@ function generateClassList() {
         classList[student.studentClass].push(student);
     });
     
-    let classHtml = '<ul>';
+    let classHtml = '<ul class="w3-ul w3-border">';
     for (let className in classList) {
         classHtml += `<li><strong>${className}</strong><ul>`;
         classList[className].forEach(student => {
