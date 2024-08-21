@@ -39,16 +39,32 @@ function generateAttendanceReport() {
 function showStudentDetails(date, studentClass) {
     let allAttendance = JSON.parse(localStorage.getItem('attendance')) || {};
     let attendance = allAttendance[date] ? allAttendance[date][studentClass] : null;
+
     if (attendance) {
         let studentsHtml = `
-            <h3>Estudiantes presentes el ${date} en la clase ${studentClass}</h3>
+            <h3>Estudiantes de la clase ${studentClass} el ${date}</h3>
+            <h4>Presentes:</h4>
             <ul class="w3-ul w3-card-4">
         `;
+
         for (let student in attendance) {
             if (attendance[student] === 'present') {
                 studentsHtml += `<li class="w3-bar">${student}</li>`;
             }
         }
+
+        studentsHtml += `
+            </ul>
+            <h4>Ausentes:</h4>
+            <ul class="w3-ul w3-card-4">
+        `;
+
+        for (let student in attendance) {
+            if (attendance[student] === 'absent') {
+                studentsHtml += `<li class="w3-bar">${student}</li>`;
+            }
+        }
+
         studentsHtml += '</ul>';
         document.getElementById('report-content').innerHTML = studentsHtml;
     } else {
