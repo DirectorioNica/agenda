@@ -19,7 +19,7 @@ function generateAttendanceReport() {
             const attendance = allAttendance[date][studentClass];
             const presentCount = Object.values(attendance).filter(status => status === 'present').length;
             reportHtml += `
-                <tr>
+                <tr ondblclick="showStudentDetails('${date}', '${studentClass}')">
                     <td>${date}</td>
                     <td>${studentClass}</td>
                     <td>${presentCount}</td>
@@ -33,6 +33,27 @@ function generateAttendanceReport() {
         </table>
     `;
     return reportHtml;
+}
+
+// Función para mostrar los detalles de los estudiantes al hacer doble clic en una fila
+function showStudentDetails(date, studentClass) {
+    let allAttendance = JSON.parse(localStorage.getItem('attendance')) || {};
+    let attendance = allAttendance[date] ? allAttendance[date][studentClass] : null;
+    if (attendance) {
+        let studentsHtml = `
+            <h3>Estudiantes presentes el ${date} en la clase ${studentClass}</h3>
+            <ul class="w3-ul w3-card-4">
+        `;
+        for (let student in attendance) {
+            if (attendance[student] === 'present') {
+                studentsHtml += `<li class="w3-bar">${student}</li>`;
+            }
+        }
+        studentsHtml += '</ul>';
+        document.getElementById('report-content').innerHTML = studentsHtml;
+    } else {
+        alert('No hay datos de asistencia para esta fecha y clase.');
+    }
 }
 
 // Función para mostrar el reporte en el HTML
@@ -50,3 +71,4 @@ function showAttendanceReport() {
 
 // Exportar las funciones globalmente
 window.showAttendanceReport = showAttendanceReport;
+window.showStudentDetails = showStudentDetails;
