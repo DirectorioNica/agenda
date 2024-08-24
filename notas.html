@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Notas</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="w3-container">
+
+    <header class="w3-bar w3-blue">
+        <h3 class="w3-bar-item">Sistema de Registro de Notas</h3>
+    </header>
+
+    <div class="w3-padding">
+        <!-- Tabs -->
+        <div class="w3-bar w3-light-grey">
+            <button class="w3-bar-item w3-button tablink w3-blue" onclick="openTab(event, 'AgregarNotas')">
+                <i class="fa fa-plus"></i> Agregar Notas
+            </button>
+            <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'InformeNotas')">
+                <i class="fa fa-chart-bar"></i> Informe de Notas
+            </button>
+        </div>
+
+        <!-- Agregar Notas -->
+        <div id="AgregarNotas" class="w3-container w3-border tab-content" style="display:block">
+            <h2>Agregar Notas</h2>
+            <label for="class-select">Seleccionar Clase:</label>
+            <select id="class-select" class="w3-select w3-margin-bottom" onchange="loadStudents()">
+                <option value="">Seleccionar Clase</option>
+                <!-- Opciones de clase se cargarán dinámicamente -->
+            </select>
+
+            <label for="student-select">Seleccionar Estudiante:</label>
+            <select id="student-select" class="w3-select w3-margin-bottom" onchange="showGradeInputs()">
+                <option value="">Seleccionar Estudiante</option>
+                <!-- Opciones de estudiantes se cargarán dinámicamente -->
+            </select>
+
+            <div id="grade-inputs" class="w3-hide">
+                <label for="grade1">Primer Corte:</label>
+                <select id="grade1" class="w3-select w3-margin-bottom">
+                    <option value="AA">AA</option>
+                    <option value="AS">AS</option>
+                    <option value="AF">AF</option>
+                    <option value="AI">AI</option>
+                </select>
+
+                <label for="grade2">Segundo Corte:</label>
+                <select id="grade2" class="w3-select w3-margin-bottom">
+                    <option value="AA">AA</option>
+                    <option value="AS">AS</option>
+                    <option value="AF">AF</option>
+                    <option value="AI">AI</option>
+                </select>
+
+                <label for="grade3">Tercer Corte:</label>
+                <select id="grade3" class="w3-select w3-margin-bottom">
+                    <option value="AA">AA</option>
+                    <option value="AS">AS</option>
+                    <option value="AF">AF</option>
+                    <option value="AI">AI</option>
+                </select>
+
+                <label for="grade4">Cuarto Corte:</label>
+                <select id="grade4" class="w3-select w3-margin-bottom">
+                    <option value="AA">AA</option>
+                    <option value="AS">AS</option>
+                    <option value="AF">AF</option>
+                    <option value="AI">AI</option>
+                </select>
+
+                <label for="final-grade">Nota Final:</label>
+                <select id="final-grade" class="w3-select w3-margin-bottom">
+                    <option value="AA">AA</option>
+                    <option value="AS">AS</option>
+                    <option value="AF">AF</option>
+                    <option value="AI">AI</option>
+                </select>
+
+                <button class="w3-button w3-blue" onclick="saveGrades()">Guardar Notas</button>
+            </div>
+        </div>
+
+        <!-- Informe de Notas -->
+        <div id="InformeNotas" class="w3-container w3-border tab-content" style="display:none">
+            <h2>Informe de Notas</h2>
+            <label for="report-class-select">Seleccionar Clase:</label>
+            <select id="report-class-select" class="w3-select w3-margin-bottom" onchange="generateGradeReport()">
+                <option value="">Seleccionar Clase</option>
+                <!-- Opciones de clase se cargarán dinámicamente -->
+            </select>
+
+            <table class="w3-table w3-bordered w3-margin-top">
+                <thead>
+                    <tr>
+                        <th>Estudiante</th>
+                        <th>Primer Corte</th>
+                        <th>Segundo Corte</th>
+                        <th>Tercer Corte</th>
+                        <th>Cuarto Corte</th>
+                        <th>Nota Final</th>
+                    </tr>
+                </thead>
+                <tbody id="grade-report-content">
+                    <!-- Informe se cargará dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="utils.js"></script>
+    <script src="grades.js"></script>
+    <script src="reportes.js"></script>
+    <script>
+        function openTab(evt, tabName) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("tab-content");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-blue", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " w3-blue";
+        }
+    </script>
+</body>
+</html>
