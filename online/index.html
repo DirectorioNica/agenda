@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Estudiantes - Notas de Inglés</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/3.4.3/parse.min.js"></script>
+</head>
+<body class="w3-light-grey">
+
+    <!-- Contenedor Principal -->
+    <div class="w3-container w3-padding-32">
+        <h2 class="w3-center w3-teal w3-padding">Registro de Estudiantes</h2>
+
+        <!-- Formulario de Registro -->
+        <form id="studentForm" class="w3-card-4 w3-white w3-padding" onsubmit="registerStudent(event)">
+            <label for="name">Nombre del Estudiante:</label>
+            <input class="w3-input w3-border w3-round" type="text" id="name" required>
+
+            <label for="grade" class="w3-margin-top">Grado:</label>
+            <select class="w3-select w3-border w3-round" id="grade" required>
+                <option value="" disabled selected>Selecciona un grado</option>
+                <option value="1">1er Grado</option>
+                <option value="2">2do Grado</option>
+                <option value="3">3er Grado</option>
+                <option value="4">4to Grado</option>
+                <option value="5">5to Grado</option>
+                <option value="6">6to Grado</option>
+            </select>
+
+            <label for="gender" class="w3-margin-top">Sexo:</label>
+            <select class="w3-select w3-border w3-round" id="gender" required>
+                <option value="" disabled selected>Selecciona el sexo</option>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+            </select>
+
+            <label for="school" class="w3-margin-top">Escuela:</label>
+            <input class="w3-input w3-border w3-round" type="text" id="school" required>
+
+            <h3 class="w3-center w3-teal w3-padding w3-margin-top">Notas de Inglés</h3>
+
+            <label for="primerCorte">Primer Corte:</label>
+            <input class="w3-input w3-border w3-round" type="text" id="primerCorte" required>
+
+            <label for="segundoCorte">Segundo Corte:</label>
+            <input class="w3-input w3-border w3-round" type="text" id="segundoCorte" required>
+
+            <label for="tercerCorte">Tercer Corte:</label>
+            <input class="w3-input w3-border w3-round" type="text" id="tercerCorte" required>
+
+            <label for="cuartoCorte">Cuarto Corte:</label>
+            <input class="w3-input w3-border w3-round" type="text" id="cuartoCorte" required>
+
+            <label for="notaFinal">Nota Final:</label>
+            <input class="w3-input w3-border w3-round" type="text" id="notaFinal" required>
+
+            <button class="w3-button w3-teal w3-round w3-margin-top" type="submit">Registrar Estudiante</button>
+
+            <div id="success-msg" class="w3-text-green w3-center w3-margin-top" style="display: none;">
+                ¡Estudiante registrado con éxito!
+            </div>
+        </form>
+    </div>
+
+    <script src="js/init.js"></script>
+    <script src="js/student.js"></script>
+</body>
+</html>
