@@ -4,6 +4,7 @@ function registerStudent() {
     const studentGrade = document.getElementById('studentGrade').value;
     const studentSchool = document.getElementById('studentSchool').value;
     const studentSeccion = document.getElementById('studentSeccion').value;
+	const studentGender = document.getElementById('studentGender').value;
 
     if (!studentName || !studentGrade || !studentSchool || !studentSeccion) {
         alert("Por favor, completa todos los campos.");
@@ -28,7 +29,8 @@ function registerStudent() {
                 const newStudent = new Student();
                 newStudent.set('name', studentName);
                 newStudent.set('grade', studentGrade);
-                newStudent.set('school', studentSchool);
+				newStudent.set('gender', studentGender);
+				newStudent.set('school', studentSchool);
                 newStudent.set('seccion', studentSeccion);
 
                 // Guardar en la base de datos
@@ -43,6 +45,7 @@ function registerStudent() {
             document.getElementById('studentGrade').value = '';
             document.getElementById('studentSchool').value = '';
             document.getElementById('studentSeccion').value = '';
+			document.getElementById('studentGender').value = '';
         })
         .catch(error => {
             alert('Error al registrar estudiante: ' + error.message);
