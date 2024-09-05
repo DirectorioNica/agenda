@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reportes</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/3.4.1/parse.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/reportes.js"></script> <!-- Archivo JavaScript con la lógica de los reportes -->
+	
+</head>
+<body>
+
+<div class="w3-container w3-teal">
+    <h2>Reportes</h2>
+</div>
+<br>
+<div class="w3-container">
+    <!-- Tabs -->
+    <div class="w3-bar w3-border">
+        <button class="w3-bar-item w3-button tablink w3-light-grey" onclick="openTab(event, 'grado')">Informe por Grado</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openTab(event, 'sexo')">Informe por Sexo</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div id="grado" class="w3-container tabcontent" style="display:block;">
+        <h3>Informe por Grado</h3>
+        <div id="gradoReport">
+            <!-- Aquí se mostrará el informe por grado -->
+        </div>
+    </div>
+
+    <div id="sexo" class="w3-container tabcontent" style="display:none;">
+        <h3>Informe por Sexo</h3>
+        <div id="gradoSexoReport">
+            <!-- Aquí se mostrará el informe por sexo -->
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

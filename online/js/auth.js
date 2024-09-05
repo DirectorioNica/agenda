@@ -4,7 +4,7 @@ function login() {
 
     Parse.User.logIn(username, password).then(user => {
         // Login exitoso, redirige a la página principal
-        window.location.href = "registro.html";
+        window.location.href = "index.html";
     }).catch(error => {
         // Mostrar error si el login falla
         document.getElementById('error-msg').textContent = "Usuario o contraseña incorrectos.";
