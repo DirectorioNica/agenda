@@ -1,70 +1,81 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Estudiantes - Notas de Inglés</title>
+    <meta charset="utf-8">
+    <title>Inicio</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/3.4.3/parse.min.js"></script>
-</head>
-<body class="w3-light-grey">
-
-    <!-- Contenedor Principal -->
-    <div class="w3-container w3-padding-32">
-        <h2 class="w3-center w3-teal w3-padding">Registro de Estudiantes</h2>
-
-        <!-- Formulario de Registro -->
-        <form id="studentForm" class="w3-card-4 w3-white w3-padding" onsubmit="registerStudent(event)">
-            <label for="name">Nombre del Estudiante:</label>
-            <input class="w3-input w3-border w3-round" type="text" id="name" required>
-
-            <label for="grade" class="w3-margin-top">Grado:</label>
-            <select class="w3-select w3-border w3-round" id="grade" required>
-                <option value="" disabled selected>Selecciona un grado</option>
-                <option value="1">1er Grado</option>
-                <option value="2">2do Grado</option>
-                <option value="3">3er Grado</option>
-                <option value="4">4to Grado</option>
-                <option value="5">5to Grado</option>
-                <option value="6">6to Grado</option>
-            </select>
-
-            <label for="gender" class="w3-margin-top">Sexo:</label>
-            <select class="w3-select w3-border w3-round" id="gender" required>
-                <option value="" disabled selected>Selecciona el sexo</option>
-                <option value="M">Masculino</option>
-                <option value="F">Femenino</option>
-            </select>
-
-            <label for="school" class="w3-margin-top">Escuela:</label>
-            <input class="w3-input w3-border w3-round" type="text" id="school" required>
-
-            <h3 class="w3-center w3-teal w3-padding w3-margin-top">Notas de Inglés</h3>
-
-            <label for="primerCorte">Primer Corte:</label>
-            <input class="w3-input w3-border w3-round" type="text" id="primerCorte" required>
-
-            <label for="segundoCorte">Segundo Corte:</label>
-            <input class="w3-input w3-border w3-round" type="text" id="segundoCorte" required>
-
-            <label for="tercerCorte">Tercer Corte:</label>
-            <input class="w3-input w3-border w3-round" type="text" id="tercerCorte" required>
-
-            <label for="cuartoCorte">Cuarto Corte:</label>
-            <input class="w3-input w3-border w3-round" type="text" id="cuartoCorte" required>
-
-            <label for="notaFinal">Nota Final:</label>
-            <input class="w3-input w3-border w3-round" type="text" id="notaFinal" required>
-
-            <button class="w3-button w3-teal w3-round w3-margin-top" type="submit">Registrar Estudiante</button>
-
-            <div id="success-msg" class="w3-text-green w3-center w3-margin-top" style="display: none;">
-                ¡Estudiante registrado con éxito!
-            </div>
-        </form>
-    </div>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/3.4.1/parse.min.js"></script>
     <script src="js/init.js"></script>
-    <script src="js/student.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        window.onload = function() {
+            // Llamar a la función para verificar si el usuario está autenticado
+            checkAuth();
+        }
+    </script>
+</head>
+<body>
+
+<div class="w3-container w3-teal">
+    <h2>Bienvenido</h2>
+</div>
+
+<div class="w3-bar w3-teal">
+    <button class="w3-bar-item w3-button" onclick="openTab(event, 'Registro')">
+        <i class="fas fa-user-plus"></i> Registro
+    </button>
+    <button class="w3-bar-item w3-button" onclick="openTab(event, 'Reportes')">
+        <i class="fas fa-chart-bar"></i> Reportes
+    </button>
+    <button class="w3-bar-item w3-button" onclick="openTab(event, 'Asistencias')">
+        <i class="fas fa-check-square"></i> Asistencias
+    </button>
+    <button class="w3-bar-item w3-button" onclick="openTab(event, 'Estudiantes')">
+        <i class="fas fa-users"></i> Estudiantes
+    </button>
+</div>
+
+<!-- Contenido de las pestañas -->
+<div id="Registro" class="w3-container w3-padding-16 tab-content" style="display:none">
+    <h3>Registro</h3>
+    <p><a href="registro.html">Ir a la página de registro</a></p>
+</div>
+
+<div id="Reportes" class="w3-container w3-padding-16 tab-content" style="display:none">
+    <h3>Reportes</h3>
+    <p><a href="reportes.html">Ir a la página de reportes</a></p>
+</div>
+
+<div id="Asistencias" class="w3-container w3-padding-16 tab-content" style="display:none">
+    <h3>Asistencias</h3>
+    <p><a href="asistencias.html">Ir a la página de asistencias</a></p>
+</div>
+
+<div id="Estudiantes" class="w3-container w3-padding-16 tab-content" style="display:none">
+    <h3>Estudiantes</h3>
+    <p><a href="estudiantes.html">Ir a la página de estudiantes</a></p>
+</div>
+
+<script>
+// Función para abrir pestañas
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("w3-bar-item");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" w3-teal", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " w3-teal";
+}
+
+// Mostrar la primera pestaña por defecto
+document.getElementsByClassName("w3-bar-item")[0].click();
+</script>
+
 </body>
 </html>

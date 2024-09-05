@@ -1,12 +1,10 @@
-// js/auth.js
-
 function login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
     Parse.User.logIn(username, password).then(user => {
         // Login exitoso, redirige a la página principal
-        window.location.href = "index.html";
+        window.location.href = "registro.html";
     }).catch(error => {
         // Mostrar error si el login falla
         document.getElementById('error-msg').textContent = "Usuario o contraseña incorrectos.";

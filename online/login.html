@@ -1,33 +1,37 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Registro de Notas</title>
+    <title>Inicio de Sesión</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-</head>
-<body class="w3-light-grey">
-
-    <div class="w3-container w3-display-middle" style="width: 300px;">
-        <div class="w3-card-4 w3-white w3-padding">
-            <h2 class="w3-center w3-teal w3-padding">Iniciar Sesión</h2>
-            
-            <label for="username">Usuario:</label>
-            <input class="w3-input w3-border w3-round" type="text" id="username" required>
-            
-            <label for="password" class="w3-margin-top">Contraseña:</label>
-            <input class="w3-input w3-border w3-round" type="password" id="password" required>
-            
-            <button class="w3-button w3-teal w3-margin-top w3-round w3-block" onclick="login()">Iniciar Sesión</button>
-            
-            <div id="error-msg" class="w3-text-red w3-margin-top w3-center"></div>
-        </div>
-    </div>
-
-    <!-- Incluir Parse SDK desde CDN -->
-    <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
-    <!-- Incluir Scripts Personalizados -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/3.4.1/parse.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/auth.js"></script>
+</head>
+<body>
+
+<div class="w3-container w3-teal">
+    <h2>Iniciar Sesión</h2>
+</div>
+
+<div class="w3-container">
+    <form class="w3-container w3-card-4">
+        <p>
+        <label>Usuario</label>
+        <input class="w3-input w3-border" type="text" id="username" required>
+        </p>
+
+        <p>
+        <label>Contraseña</label>
+        <input class="w3-input w3-border" type="password" id="password" required>
+        </p>
+
+        <p>
+        <button class="w3-btn w3-blue" type="button" onclick="login()">Iniciar Sesión</button>
+        </p>
+
+        <p id="error-msg" class="w3-text-red"></p>
+    </form>
+</div>
+
 </body>
 </html>

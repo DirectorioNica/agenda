@@ -1,39 +1,50 @@
-// js/student.js
+// Función para registrar un nuevo estudiante
+function registerStudent() {
+    const studentName = document.getElementById('studentName').value;
+    const studentGrade = document.getElementById('studentGrade').value;
+    const studentSchool = document.getElementById('studentSchool').value;
+    const studentSeccion = document.getElementById('studentSeccion').value;
 
-// Función para registrar estudiantes
-async function registerStudent(event) {
-    event.preventDefault();  // Prevenir el comportamiento por defecto del formulario
-
-    // Obtener los valores del formulario
-    const name = document.getElementById('name').value;
-    const grade = document.getElementById('grade').value;
-    const gender = document.getElementById('gender').value;
-    const school = document.getElementById('school').value;
-    const primerCorte = document.getElementById('primerCorte').value;
-    const segundoCorte = document.getElementById('segundoCorte').value;
-    const tercerCorte = document.getElementById('tercerCorte').value;
-    const cuartoCorte = document.getElementById('cuartoCorte').value;
-    const notaFinal = document.getElementById('notaFinal').value;
-
-    // Crear un nuevo objeto Parse para guardar el estudiante
-    const Student = Parse.Object.extend("Students");
-    const student = new Student();
-
-    student.set("name", name);
-    student.set("grade", grade);
-    student.set("gender", gender);
-    student.set("school", school);
-    student.set("primerCorte", primerCorte);
-    student.set("segundoCorte", segundoCorte);
-    student.set("tercerCorte", tercerCorte);
-    student.set("cuartoCorte", cuartoCorte);
-    student.set("notaFinal", notaFinal);
-
-    try {
-        // Guardar el estudiante en Back4App
-        await student.save();
-        document.getElementById("success-msg").style.display = "block";
-    } catch (error) {
-        console.error('Error al registrar el estudiante:', error);
+    if (!studentName || !studentGrade || !studentSchool || !studentSeccion) {
+        alert("Por favor, completa todos los campos.");
+        return;
     }
+
+    // Crear una consulta para verificar si el estudiante ya existe
+    const Student = Parse.Object.extend('Students');
+    const query = new Parse.Query(Student);
+    query.equalTo('name', studentName);
+    query.equalTo('grade', studentGrade);
+    query.equalTo('seccion', studentSeccion);
+
+    query.first()
+        .then(existingStudent => {
+            if (existingStudent) {
+                // Estudiante ya existe
+                alert("El estudiante ya está registrado.");
+                return; // Salir de la función para evitar el registro
+            } else {
+                // Crear una nueva instancia de la clase Student en Back4App
+                const newStudent = new Student();
+                newStudent.set('name', studentName);
+                newStudent.set('grade', studentGrade);
+                newStudent.set('school', studentSchool);
+                newStudent.set('seccion', studentSeccion);
+
+                // Guardar en la base de datos
+                return newStudent.save();
+            }
+        })
+        .then(() => {
+            // Si se llegó aquí, es porque el estudiante no existía y ahora se ha registrado exitosamente
+            alert('Estudiante registrado con éxito');
+            // Limpiar el formulario
+            document.getElementById('studentName').value = '';
+            document.getElementById('studentGrade').value = '';
+            document.getElementById('studentSchool').value = '';
+            document.getElementById('studentSeccion').value = '';
+        })
+        .catch(error => {
+            alert('Error al registrar estudiante: ' + error.message);
+        });
 }

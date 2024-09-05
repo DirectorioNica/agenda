@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro de Estudiantes</title>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/3.4.1/parse.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        window.onload = function() {
+            checkAuth(); // Verificar la autenticación
+        }
+    </script>
+    <script src="js/student.js"></script>
+</head>
+<body>
+
+<div class="w3-container w3-teal">
+    <h2>Registrar Estudiante</h2>
+</div>
+
+<div class="w3-container">
+    <form id="studentForm"class="w3-container w3-card-4">
+        <p>
+        <label> <i class="fas fa-user-plus"> </i> Nombre</label>
+        <input class="w3-input w3-border" type="text" id="studentName" required>
+        </p>
+		
+		
+		<label for="studentGrade" class="w3-margin-top">Grado:</label>
+            <select class="w3-select w3-border w3-round" id="studentGrade" required>
+                <option value="" disabled selected>Selecciona un grado</option>
+                <option value="1">1er Grado</option>
+                <option value="2">2do Grado</option>
+                <option value="3">3er Grado</option>
+                <option value="4">4to Grado</option>
+                <option value="5">5to Grado</option>
+                <option value="6">6to Grado</option>
+            </select>
+
+        <p>
+        <label>Sección</label>
+        <input class="w3-input w3-border" type="text" id="studentSeccion" required>
+        </p>
+
+        <p>
+        <label>Escuela</label>
+        <input class="w3-input w3-border" type="text" id="studentSchool" required>
+        </p>
+
+        <p>
+        <button class="w3-btn w3-blue" type="button" onclick="registerStudent()">  <i class="fas fa-user-plus"></i> Registrar</button>
+        </p>
+    </form>
+</div>
+
+</body>
+</html>
