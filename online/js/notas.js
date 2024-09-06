@@ -4,9 +4,6 @@ let selectedStudent = null;
 
 document.addEventListener('DOMContentLoaded', function() {
     loadSchools();
-    document.getElementById('schoolSelect').addEventListener('change', loadStudents);
-    document.getElementById('gradeSelect').addEventListener('change', loadStudents);
-    document.getElementById('seccionSelect').addEventListener('change', loadStudents);
 });
 
 // Cargar escuelas en el select
@@ -31,37 +28,49 @@ function loadSchools() {
     });
 }
 
+// Filtrar y cargar estudiantes según los valores seleccionados
+function filterData() {
+    document.getElementById('loadingMessage').style.display = 'block';
+    loadStudents().finally(() => {
+        document.getElementById('loadingMessage').style.display = 'none';
+    });
+}
+
 // Cargar estudiantes de la escuela seleccionada
 function loadStudents() {
-    const selectedSchool = document.getElementById('schoolSelect').value;
-    const selectedGrade = document.getElementById('gradeSelect').value;
-    const selectedSeccion = document.getElementById('seccionSelect').value;
+    return new Promise((resolve, reject) => {
+        const selectedSchool = document.getElementById('schoolSelect').value;
+        const selectedGrade = document.getElementById('gradeSelect').value;
+        const selectedSeccion = document.getElementById('seccionSelect').value;
 
-    const Student = Parse.Object.extend('Students');
-    const query = new Parse.Query(Student);
-    
-    if (selectedSchool) query.equalTo('school', selectedSchool);
-    if (selectedGrade) query.equalTo('grade', selectedGrade);
-    if (selectedSeccion) query.equalTo('seccion', selectedSeccion);
+        const Student = Parse.Object.extend('Students');
+        const query = new Parse.Query(Student);
+        
+        if (selectedSchool) query.equalTo('school', selectedSchool);
+        if (selectedGrade) query.equalTo('grade', selectedGrade);
+        if (selectedSeccion) query.equalTo('seccion', selectedSeccion);
 
-    query.find().then(results => {
-        const studentsTable = document.getElementById('studentsTable').getElementsByTagName('tbody')[0];
-        studentsTable.innerHTML = ''; // Limpiar la tabla
+        query.find().then(results => {
+            const studentsTable = document.getElementById('studentsTable').getElementsByTagName('tbody')[0];
+            studentsTable.innerHTML = ''; // Limpiar la tabla
 
-        results.forEach(student => {
-            const row = studentsTable.insertRow();
-            row.insertCell(0).innerText = student.get('name');
-            row.insertCell(1).innerText = student.get('grade');
-            row.insertCell(2).innerText = student.get('primerCorte') || '';
-            row.insertCell(3).innerText = student.get('segundoCorte') || '';
-            row.insertCell(4).innerText = student.get('tercerCorte') || '';
-            row.insertCell(5).innerText = student.get('cuartoCorte') || '';
-            row.insertCell(6).innerText = student.get('notaFinal') || '';
+            results.forEach(student => {
+                const row = studentsTable.insertRow();
+                row.insertCell(0).innerText = student.get('name');
+                row.insertCell(1).innerText = student.get('grade');
+                row.insertCell(2).innerText = student.get('primerCorte') || '';
+                row.insertCell(3).innerText = student.get('segundoCorte') || '';
+                row.insertCell(4).innerText = student.get('tercerCorte') || '';
+                row.insertCell(5).innerText = student.get('cuartoCorte') || '';
+                row.insertCell(6).innerText = student.get('notaFinal') || '';
 
-            row.addEventListener('dblclick', () => openEditModal(student));
+                row.addEventListener('dblclick', () => openEditModal(student));
+            });
+            resolve();
+        }).catch(error => {
+            console.error('Error al cargar los estudiantes:', error.message);
+            reject(error);
         });
-    }).catch(error => {
-        console.error('Error al cargar los estudiantes:', error.message);
     });
 }
 

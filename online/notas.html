@@ -40,6 +40,12 @@
         <option value="B">B</option>
         <option value="C">C</option>
     </select>
+
+    <button class="w3-btn w3-blue w3-margin-top" onclick="filterData()">Filtrar</button>
+</div>
+
+<div id="loadingMessage" class="w3-container w3-center w3-padding-16" style="display: none;">
+    <h3>Cargando datos...</h3>
 </div>
 
 <div class="w3-container w3-margin-top">
@@ -67,7 +73,7 @@
         <header class="w3-container w3-teal"> 
             <span onclick="document.getElementById('editModal').style.display='none'" 
             class="w3-button w3-display-topright">&times;</span>
-            <h4 id="studentNameHeader">Editar Notas</h4>
+            <h2 id="studentNameHeader">Editar Notas</h2>
         </header>
         <div class="w3-container">
             <p>
