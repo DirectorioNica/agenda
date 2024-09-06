@@ -57,12 +57,12 @@ function loadStudents() {
             results.forEach(student => {
                 const row = studentsTable.insertRow();
                 row.insertCell(0).innerText = student.get('name');
-                row.insertCell(1).innerText = student.get('grade');
-                row.insertCell(2).innerText = student.get('primerCorte') || '';
-                row.insertCell(3).innerText = student.get('segundoCorte') || '';
-                row.insertCell(4).innerText = student.get('tercerCorte') || '';
-                row.insertCell(5).innerText = student.get('cuartoCorte') || '';
-                row.insertCell(6).innerText = student.get('notaFinal') || '';
+                
+                row.insertCell(1).innerText = student.get('primerCorte') || '';
+                row.insertCell(2).innerText = student.get('segundoCorte') || '';
+                row.insertCell(3).innerText = student.get('tercerCorte') || '';
+                row.insertCell(4).innerText = student.get('cuartoCorte') || '';
+                row.insertCell(5).innerText = student.get('notaFinal') || '';
 
                 row.addEventListener('dblclick', () => openEditModal(student));
             });
