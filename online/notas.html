@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notas de Estudiantes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/3.4.1/parse.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/notas.js"></script>
+	<script src="js/auth.js"></script>
+	
+	 
+</head>
+<body>
+
+<div class="w3-container w3-teal">
+    <h2>Notas de Estudiantes</h2>
+</div>
+
+<div class="w3-container">
+    <label for="schoolSelect" class="w3-margin-top">Escuela:</label>
+    <select class="w3-select w3-border w3-round" id="schoolSelect">
+        <option value="" disabled selected>Selecciona una escuela</option>
+    </select>
+</div>
+
+<div class="w3-container w3-margin-top">
+    <table class="w3-table-all w3-hoverable" id="studentsTable">
+        <thead>
+            <tr class="w3-light-grey">
+                <th>Nombre</th>
+                <th>Grado</th>
+                <th>Primer Corte</th>
+                <th>Segundo Corte</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filas de estudiantes serán agregadas aquí dinámicamente -->
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
