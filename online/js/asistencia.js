@@ -126,10 +126,17 @@ function loadStudents() {
 }
 
 // Guardar asistencia de los estudiantes
+// Guardar asistencia de los estudiantes
 function saveAttendance() {
     const date = document.getElementById('dateInput').value;
     const studentsTableBody = document.getElementById('studentsTableBody');
     const rows = studentsTableBody.getElementsByTagName('tr');
+
+    // Convertir la fecha a solo mes y día (MM-DD)
+    const attendanceDate = new Date(date);
+    const month = attendanceDate.getMonth() + 1;  // Los meses son de 0 a 11, por eso sumamos 1
+    const day = attendanceDate.getDate();
+    const formattedDate = `${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`; // Formato MM-DD
 
     Array.from(rows).forEach(row => {
         const checkbox = row.querySelector('input[type="checkbox"]');
@@ -139,7 +146,7 @@ function saveAttendance() {
         // Crear una nueva instancia de la clase Attendance en Back4App
         const Attendance = Parse.Object.extend('Attendance');
         const attendance = new Attendance();
-        attendance.set('date', new Date(date));  // Guardar la fecha de la asistencia
+        attendance.set('date', formattedDate);  // Guardar solo el mes y día en formato MM-DD
         attendance.set('isPresent', isPresent);  // Guardar si el estudiante estuvo presente
         attendance.set('student', studentObjectId);  // Guardar el objectId del estudiante como String
 
