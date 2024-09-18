@@ -4,6 +4,7 @@ function registerStudent() {
     const studentGrade = document.getElementById('studentGrade').value;
     const studentSchool = document.getElementById('studentSchool').value;
     const studentSeccion = document.getElementById('studentSeccion').value;
+	studentSeccion=studentSeccion.toUpperCase();
 	const studentGender = document.getElementById('studentGender').value;
 
     if (!studentName || !studentGrade || !studentSchool || !studentSeccion) {
