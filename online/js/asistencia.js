@@ -1,80 +1,8 @@
-// js/asistencia.js
-
 document.addEventListener('DOMContentLoaded', function() {
-    loadSchools();
-    loadGrades();
-    loadSections();
-
     // Agregar listeners para los botones
     document.getElementById('filterButton').addEventListener('click', filterData);
     document.getElementById('saveAttendanceButton').addEventListener('click', saveAttendance);
 });
-
-// Cargar escuelas en el select
-function loadSchools() {
-    const Student = Parse.Object.extend('Students');
-    const query = new Parse.Query(Student);
-    query.select('school');
-
-    query.find().then(results => {
-        const schools = results.map(result => result.get('school'));
-        const uniqueSchools = [...new Set(schools)];
-
-        const schoolSelect = document.getElementById('schoolSelect');
-        uniqueSchools.forEach(school => {
-            const option = document.createElement('option');
-            option.value = school;
-            option.text = school;
-            schoolSelect.appendChild(option);
-        });
-    }).catch(error => {
-        console.error('Error al cargar las escuelas:', error.message);
-    });
-}
-
-// Cargar grados en el select
-function loadGrades() {
-    const Student = Parse.Object.extend('Students');
-    const query = new Parse.Query(Student);
-    query.select('grade');
-
-    query.find().then(results => {
-        const grades = results.map(result => result.get('grade'));
-        const uniqueGrades = [...new Set(grades)];
-
-        const gradeSelect = document.getElementById('gradeSelect');
-        uniqueGrades.forEach(grade => {
-            const option = document.createElement('option');
-            option.value = grade;
-            option.text = `Grado ${grade}`;
-            gradeSelect.appendChild(option);
-        });
-    }).catch(error => {
-        console.error('Error al cargar los grados:', error.message);
-    });
-}
-
-// Cargar secciones en el select
-function loadSections() {
-    const Student = Parse.Object.extend('Students');
-    const query = new Parse.Query(Student);
-    query.select('seccion');
-
-    query.find().then(results => {
-        const sections = results.map(result => result.get('seccion'));
-        const uniqueSections = [...new Set(sections)];
-
-        const sectionSelect = document.getElementById('seccionSelect');
-        uniqueSections.forEach(section => {
-            const option = document.createElement('option');
-            option.value = section;
-            option.text = section;
-            sectionSelect.appendChild(option);
-        });
-    }).catch(error => {
-        console.error('Error al cargar las secciones:', error.message);
-    });
-}
 
 // Filtrar y cargar estudiantes según los valores seleccionados
 function filterData() {
@@ -125,7 +53,6 @@ function loadStudents() {
     });
 }
 
-// Guardar asistencia de los estudiantes
 // Guardar asistencia de los estudiantes
 function saveAttendance() {
     const date = document.getElementById('dateInput').value;
