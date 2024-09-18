@@ -14,38 +14,11 @@ function openTab(evt, tabName) {
 
 // Función para cargar los informes
 function loadReports() {
-    fetchGradeReport();
+   
     fetchGradeSexReport(); // Cambiada para reflejar grado y sexo
 }
 
-// Función para obtener el informe por grado desde Back4App
-function fetchGradeReport() {
-    const Student = Parse.Object.extend('Students');
-    const query = new Parse.Query(Student);
-    query.find()
-        .then(results => {
-            const reportContainer = document.getElementById('gradoReport');
-            const grades = {};
-            results.forEach(student => {
-                const grade = student.get('grade');
-                if (!grades[grade]) {
-                    grades[grade] = { count: 0 };
-                }
-                grades[grade].count++;
-            });
 
-            let html = '<table class="w3-table-all"><thead><tr><th>Grado</th><th>Numero de Estudiantes</th></tr></thead><tbody>';
-            for (const [grade, data] of Object.entries(grades)) {
-                html += `<tr><td>${grade}</td><td>${data.count}</td></tr>`;
-            }
-            html += '</tbody></table>';
-
-            reportContainer.innerHTML = html;
-        })
-        .catch(error => {
-            console.error('Error fetching grade report:', error);
-        });
-}
 
 // Función para obtener el informe por grado y sexo desde Back4App
 function fetchGradeSexReport() {
