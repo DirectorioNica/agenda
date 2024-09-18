@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistencia</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/3.0.0/parse.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/asistencia.js" defer></script>
+</head>
+<body>
+    <div class="w3-container">
+        <h1>Registro de Asistencia</h1>
+        
+        <label for="schoolSelect">Escuela:</label>
+        <select id="schoolSelect" class="w3-select"></select>
+
+        <label for="gradeSelect">Grado:</label>
+        <select id="gradeSelect" class="w3-select"></select>
+
+        <label for="seccionSelect">Sección:</label>
+        <select id="seccionSelect" class="w3-select"></select>
+        
+        <label for="dateInput">Fecha:</label>
+        <input type="date" id="dateInput" class="w3-input" />
+
+        <button id="filterButton" class="w3-button w3-blue">Filtrar</button>
+
+        <div id="loadingMessage" class="w3-modal">
+            <div class="w3-modal-content w3-card-4 w3-animate-zoom">
+                <header class="w3-container w3-blue">
+                    <span onclick="document.getElementById('loadingMessage').style.display='none'"
+                        class="w3-button w3-display-topright">&times;</span>
+                    <h2>Cargando...</h2>
+                </header>
+                <div class="w3-container">
+                    <p>Por favor, espere mientras se cargan los datos.</p>
+                </div>
+            </div>
+        </div>
+
+        <table class="w3-table w3-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Presencia</th>
+                </tr>
+            </thead>
+            <tbody id="studentsTableBody">
+                <!-- Filas de estudiantes se insertarán aquí -->
+            </tbody>
+        </table>
+
+        <button id="saveAttendanceButton" class="w3-button w3-blue">Guardar Asistencia</button>
+    </div>
+	
+	<br><br>
+</body>
+</html>
