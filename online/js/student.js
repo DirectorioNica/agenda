@@ -45,8 +45,8 @@ function registerStudent() {
             document.getElementById('studentName').value = '';
             document.getElementById('studentGrade').value = '';
             document.getElementById('studentSchool').value = '';
-            document.getElementById('studentSeccion').value = '';
-			document.getElementById('studentGender').value = '';
+           
+	    document.getElementById('studentGender').value = '';
         })
         .catch(error => {
             alert('Error al registrar estudiante: ' + error.message);
