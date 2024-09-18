@@ -1,16 +1,4 @@
-// Función para mostrar el contenido de la pestaña seleccionada
-function openTab(evt, tabName) {
-    const tabcontent = document.getElementsByClassName("tabcontent");
-    for (let i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    const tablinks = document.getElementsByClassName("tablink");
-    for (let i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" w3-light-grey", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " w3-light-grey";
-}
+
 
 // Función para cargar los informes
 function loadReports() {
