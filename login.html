@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inicio de Sesión</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/3.4.1/parse.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/auth.js"></script>
+</head>
+<body>
+
+<div class="w3-container w3-teal">
+    <h2>Iniciar Sesión</h2>
+</div>
+
+<br>
+
+<div class="w3-container">
+    <form class="w3-container w3-card-4">
+        <p>
+        <label>Usuario</label>
+        <input class="w3-input w3-border" type="text" id="username" required>
+        </p>
+
+        <p>
+        <label>Contraseña</label>
+        <input class="w3-input w3-border" type="password" id="password" required>
+        </p>
+
+        <p>
+        <button class="w3-btn w3-blue" type="button" onclick="login()">Iniciar Sesión</button>
+        </p>
+
+        <p id="error-msg" class="w3-text-red"></p>
+    </form>
+</div>
+
+</body>
+</html>
