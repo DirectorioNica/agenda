@@ -82,7 +82,7 @@ function fetchNotesReport(school, cut) {
             // Convertir el conjunto en un array y ordenar
             const possibleNotes = Array.from(uniqueNotes).sort();
 
-            let html = '<table class="w3-table-all"><thead><tr><th>Grado</th><th>Corte</th><th>Nota</th><th>Masculino</th><th>Femenino</th></tr></thead><tbody>';
+            let html = '<table class="w3-table-all"><thead><tr><th>Grado</th><th>Corte</th><th>Nota</th><th>V</th><th>M</th></tr></thead><tbody>';
 
             for (const [grade, genders] of Object.entries(notesReport)) {
                 possibleNotes.forEach(note => {
