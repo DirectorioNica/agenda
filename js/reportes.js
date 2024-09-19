@@ -31,7 +31,7 @@ function fetchGradeSexReport(school) {
                 }
             });
 
-            let html = '<table class="w3-table-all"><thead><tr><th>Grado</th><th>Sección</th><th>Masculino</th><th>Femenino</th></tr></thead><tbody>';
+            let html = '<table class="w3-table-all"><thead><tr><th>Grado</th><th>Sección</th><th>M</th><th>F</th></tr></thead><tbody>';
             for (const [grade, sections] of Object.entries(gradeSexReport)) {
                 for (const [section, data] of Object.entries(sections)) {
                     html += `<tr class="w3-border w3-hover-opacity w3-hover-red"><td>${grade}</td><td>${section}</td><td>${data.M}</td><td>${data.F}</td></tr>`;
