@@ -7,7 +7,6 @@ const scoreElement = document.createElement('div');
 const opportunitiesElement = document.createElement('div');
 const gameOverMessage = document.createElement('div');
 gameOverMessage.id = 'game-over';
-gameOverMessage.textContent = 'GAME OVER';
 gameOverMessage.style.display = 'none';
 gameOverMessage.style.position = 'absolute';
 gameOverMessage.style.top = '50%';
@@ -79,6 +78,7 @@ function shuffleQuestions() {
 function updateUI() {
     scoreElement.textContent = `Score: ${score}`;
     opportunitiesElement.textContent = `Opportunities Left: ${opportunities}`;
+    gameOverMessage.innerHTML = `GAME OVER<br>Score: ${score}<br>Opportunities Left: ${opportunities}`;
 }
 
 function loadQuestion() {
