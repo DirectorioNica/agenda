@@ -1,92 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-	
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Inicio</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/3.4.1/parse.min.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/auth.js"></script>
-    <script>
-        window.onload = function() {
-            // Llamar a la función para verificar si el usuario está autenticado
-            checkAuth();
-        }
-    </script>
+    <title>Vocabulary Practice Game</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<div class="w3-container w3-teal">
-    <h2>Bienvenido</h2>
-</div>
-
-<div class="w3-bar w3-teal">
-    <button class="w3-bar-item w3-button" onclick="openTab(event, 'Registro')">
-        <i class="fas fa-user-plus"></i> Registros
-    </button>
-    <button class="w3-bar-item w3-button" onclick="openTab(event, 'Reportes')">
-        <i class="fas fa-chart-bar"></i> Reportes
-    </button>
-    
-    <button class="w3-bar-item w3-button" onclick="openTab(event, 'Estudiantes')">
-        <i class="fas fa-users"></i> Estudiantes
-    </button>
-</div>
-
-<!-- Contenido de las pestañas -->
-<div id="Registro" class="w3-container w3-padding-16 tab-content" style="display:none">
-    <div class="w3-card-4 w3-panel w3-large">
-    <h3>Registros</h3>
-    <div class="  w3-padding"><a class="w3-btn w3-green" href="registro.html"> <i class="fa-solid fa-graduation-cap"></i> Registrar Estudiante</a></div><br>
-	    
-    <div class="  w3-padding"><a <a class="w3-btn w3-green" href="notas.html"> <i class="fa-solid fa-clipboard"></i> Registrar Notas</a></p></div><br>
-
-    <div class="  w3-padding"> <a <a class="w3-btn w3-green" href="asistencia.html"> <i class="fa-solid fa-book"></i> Registrar Asistencias</a></div>
-	    
-    </div><br>
-	
-	
-</div>
-
-<div id="Reportes" class="w3-container w3-padding-16 tab-content" style="display:none">
- 
-    <h3>Reportes</h3>
-    <p><a href="reportes.html">Ir a la página de reportes</a></p>
-</div>
-
-
-
-<div id="Estudiantes" class="w3-container w3-padding-16 tab-content" style="display:none">
-<div class="w3-card-4 w3-panel w3-large">
-<div class="w3-padding"> <a class="w3-btn w3-blue" href="reporteAsistencia.html"> <i class="fa-solid fa-eye"></i>
-	Ver Asistencia por Fecha</a></div>
-</div> </div>
-
-
-
-<script>
-// Función para abrir pestañas
-function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tab-content");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("w3-bar-item");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" w3-teal", "");
-    }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " w3-teal";
-}
-
-// Mostrar la primera pestaña por defecto
-document.getElementsByClassName("w3-bar-item")[0].click();
-</script>
-
+    <div id="game-container">
+        <h1>Vocabulary Practice Game</h1>
+        <div id="question-section">
+            <img id="question-image" src="dog.png" alt="Question Image">
+            <p id="question">What is this word?</p>
+        </div>
+        <div id="options">
+            <button class="option">Dog</button>
+            <button class="option">Cat</button>
+            <button class="option">Rabbit</button>
+        </div>
+        <div id="feedback"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
