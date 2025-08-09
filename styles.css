@@ -151,4 +151,9 @@ h1 {
   #question-image {
     max-width: 90%;
   }
+
+  .option {
+    font-size: 1.6rem;   /* más grande que el actual */
+    padding: 14px 22px;  
 }
+
