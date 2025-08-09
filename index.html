@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vocabulary Practice Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="game-container">
+    <h1>Vocabulary Practice Game</h1>
+
+    <div id="score-container">
+      <p id="score">Score: 0</p>
+      <p id="opportunities">Opportunities Left: 3</p>
+    </div>
+	
+	
+
+    <section id="question-section">
+      <img id="question-image" src="" alt="" />
+      <p id="question">What is this word?</p>
+    </section>
+
+    <div id="feedback"></div>
+    <div id="options"></div>
+  </div>
+
+  <!-- Módulos -->
+  <script type="module">
+    import { WORD_BANK } from './data.js';
+    import { createGame } from './engine.js';
+
+    createGame({
+      data: WORD_BANK,
+      lives: 3,
+      autoAdvance: true,        // <- SIN BOTÓN NEXT
+      autoAdvanceDelay: 900     // ms (ajústalo si quieres más/menos pausa)
+    });
+  </script>
+</body>
+</html>
